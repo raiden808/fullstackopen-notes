@@ -7,11 +7,20 @@ const App = (props) => {
   const [newNote, setNewNote] = useState(
     'a new note...'
   )
+  const [showAll,setShowAll] = useState(true)
 
   const addNote = (event) => {
     event.preventDefault()
 
-    console.log('button clicked', event.target)
+    const noteObject = {
+      content: newNote,
+      date: new Date().toISOString(),
+      important: Math.random() > 0.5,
+      id: notes.length + 1,
+    }
+
+    setNotes(notes.concat(noteObject))
+    setNewNote('')
   }
 
   const handleNoteChange = (event) => {
@@ -19,7 +28,16 @@ const App = (props) => {
     setNewNote(event.target.value)
   }
 
-  const rows = () => notes.map(note => <Note key={note.id} note={note} />);
+  const notesToShow = showAll
+    ? notes
+    : notes.filter(note => note.important === true)
+
+  const rows = () => notesToShow.map(note => 
+    <Note 
+      key={note.id} 
+      note={note} 
+    />
+  );
 
   return (
     <div>

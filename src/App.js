@@ -42,6 +42,11 @@ const App = (props) => {
   return (
     <div>
       <h1>Notes</h1>
+      <div>
+        <button onClick={() => setShowAll(!showAll)}>
+          show {showAll ? 'important' : 'all' }
+        </button>
+      </div>
       <ul>{rows()}</ul>
       <form onSubmit={addNote}>
       	<input 

@@ -2,6 +2,27 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App"; // highlight-line
 
+import axios from 'axios'
+
+
+// using the promise method
+const promise = axios.get('http://localhost:3001/notes')
+promise.then(response => {
+  console.log("Using regular promise",response)
+})
+
+// using the axios
+axios.get('http://localhost:3001/notes').then(response =>{
+  const notes = response.data
+  console.log("Using axios", notes)
+})
+
+// console.log(promise)
+
+// const promise2 = axios.get('http://localhost:3001/foobar')
+// console.log(promise2)
+
+
 const notes = [
   {
     id: 1,

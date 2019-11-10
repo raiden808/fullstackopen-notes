@@ -40,7 +40,13 @@ const notes = [
 ];
 
 
-// using axios for rendering
+// using axios for rendering this is not recommended
+// axios.get('http://localhost:3001/notes').then(response => {
+//   const notes = response.data
+//   ReactDOM.render(
+//     <App notes={notes} />,document.getElementById('root')
+//   )
+// })
 
 
 

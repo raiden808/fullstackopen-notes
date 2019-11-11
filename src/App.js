@@ -4,13 +4,20 @@ import Note from "./components/Note";
 
 const App = (props) => {
   const [notes,setNotes] = useState([])
-  const [newNote, setNewNote] = useState(
-    'a new note...'
-  )
+  const [newNote, setNewNote] = useState('')
   const [showAll,setShowAll] = useState(true)
 
 
-  useEffect(()=>{},[])
+  useEffect(()=>{
+    console.log("effect")
+    axios
+      .get('http://localhost:3001/notes')
+      .then(response => {
+        console.log('promise fulfilled')
+        setNotes(response.data)
+      })
+  },[])
+  console.log('render',notes.length,'notes')
 
   const addNote = (event) => {
     event.preventDefault()

@@ -15,6 +15,12 @@ const App = (props) => {
       })
   }, [])
 
+  const toggleImportance = id =>{
+    console.log(
+      `importance of ${id} needs to be toggled`
+    )
+  }
+
   const addNote = (event) => {
     event.preventDefault()
 
@@ -23,9 +29,6 @@ const App = (props) => {
       date: new Date().toISOString(),
       important: Math.random() > 0.5
     }
-
-    // setNotes(notes.concat(noteObject))
-    // setNewNote('')
 
     axios
       .post('http://localhost:3001/notes', noteObject)
@@ -49,6 +52,7 @@ const App = (props) => {
     <Note 
       key={note.id} 
       note={note} 
+      toggleImportance={()=>toggleImportance(note.id)}
     />
   );
 

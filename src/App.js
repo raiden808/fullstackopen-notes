@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import Note from "./components/Note";
+import noteService from './services/notes'
 
 const App = (props) => {
   const [notes,setNotes] = useState([])
@@ -8,8 +9,8 @@ const App = (props) => {
   const [showAll,setShowAll] = useState(true)
 
   useEffect(()=>{
-    axios
-      .get('http://localhost:3001/notes')
+    noteService
+      .getAll()
       .then(response => {
         setNotes(response.data)
       })
